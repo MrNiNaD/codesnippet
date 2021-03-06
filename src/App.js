@@ -1,9 +1,9 @@
-import Rxjs from './rxjs/RxjsApp';
+import LoginApp from './loginPage/LoginApp';
 
 function App() {
   return (
     <div className="App">
-      <Rxjs />
+      <LoginApp />
     </div>
   );
 }
