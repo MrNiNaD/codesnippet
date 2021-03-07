@@ -28,8 +28,23 @@ function LoginApp() {
         </SignUp>
         <Trimmer ref={trimmer}>
           <Container ref={container}>
-            <SignInForm><span>Sign In Form</span></SignInForm>
-            <SignUpForm><span>Sign Up Form</span></SignUpForm>
+            <SignInForm>
+              <SignInDiv>
+                <Heading>Sign In</Heading>
+                <form>
+                  <div>
+                    <input type='text' placeholder='Enter Username' />
+                  </div>
+                  <div>
+                    <input type='password' placeholder='Enter Password' />
+                  </div>
+                  <div>
+                    <input type='submit' />
+                  </div>
+                </form>
+              </SignInDiv>
+            </SignInForm>
+            <SignUpForm><div>Sign Up Form</div></SignUpForm>
           </Container>
         </Trimmer>
       </Auth>
@@ -87,5 +102,15 @@ const SignInForm = styled.div`
 
 const SignUpForm = styled(SignInForm)``;
 
+const SignInDiv = styled.div`
+  box-sizing: border-box;
+  width: 80%;
+  min-height: 80%;
+  padding: 15px;
+`;
+
+const Heading = styled.h1`
+  font-size: 37px;
+`;
 
 export default LoginApp
