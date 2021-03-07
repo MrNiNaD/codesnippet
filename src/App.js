@@ -1,8 +1,8 @@
-import LoginApp from './loginPage/LoginApp';
+import NestedRouting from './nestedRouting/NestedRouting';
 
 function App() {
   return (
-    <LoginApp />
+    <NestedRouting />
   );
 }
 
