@@ -1,8 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import GlobalStyle from './asset/GlobalStyle';
 import styled from 'styled-components';
+import Textbox1 from './components/Textbox1';
 
 function LoginApp() {
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
   const trimmer = useRef(null);
   const container = useRef(null);
 
@@ -20,27 +24,37 @@ function LoginApp() {
     <>
       <GlobalStyle />
       <Auth>
-        <SignIn>
-          <button onClick={signInClicked}>Sign In</button>
-        </SignIn>
-        <SignUp>
-          <button onClick={signUpClicked}>Sign Up</button>
-        </SignUp>
+        <Toggle>
+          <div>
+            <span>Click on Sign In Button to switch to Sign In Page</span>
+            <button onClick={signInClicked}>Sign In</button>
+          </div>
+        </Toggle>
+        <Toggle>
+          <div>
+            <span>Click on Sign Up Button to switch to Sign Up Page</span>
+            <button onClick={signUpClicked}>Sign Up</button>
+          </div>
+        </Toggle>
         <Trimmer ref={trimmer}>
           <Container ref={container}>
             <SignInForm>
               <SignInDiv>
                 <Heading>Sign In</Heading>
                 <form>
-                  <div>
-                    <input type='text' placeholder='Enter Username' />
-                  </div>
-                  <div>
-                    <input type='password' placeholder='Enter Password' />
-                  </div>
-                  <div>
+                  <Textbox1
+                    type='text'
+                    placeholder='Username'
+                    onChangeFunction={(event) => setUsername(event.target.value)}
+                  />
+                  <Textbox1
+                    type='password'
+                    placeholder='Password'
+                    onChangeFunction={(event) => setPassword(event.target.value)}
+                  />
+                  <Submit>
                     <input type='submit' />
-                  </div>
+                  </Submit>
                 </form>
               </SignInDiv>
             </SignInForm>
@@ -59,17 +73,39 @@ const Auth = styled.section`
   position: absolute;
 `;
 
-const SignIn = styled.div`
+const Toggle = styled.div`
   width: 50%;
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: darkblue;
+  background-color: #396A85;
   justify-content: center;
-`;
 
-const SignUp = styled(SignIn)`
-  background-color: skyblue;
+  div {
+    text-align: center;
+  }
+
+  span {
+    display: block;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 900;
+  }
+
+  button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 9999px;
+    margin-top: 5px;
+    background-color: #fff;
+    color: #396A85;
+    font-weight: 900;
+    cursor: pointer;
+
+    &:focus {
+      outline: none
+    }
+  }
 `;
 
 const Trimmer = styled.div`
@@ -104,13 +140,34 @@ const SignUpForm = styled(SignInForm)``;
 
 const SignInDiv = styled.div`
   box-sizing: border-box;
-  width: 80%;
-  min-height: 80%;
+  width: 50%;
+  min-height: 50%;
   padding: 15px;
 `;
 
 const Heading = styled.h1`
+  padding-bottom: 26px;
   font-size: 37px;
+`;
+
+const Submit = styled.div`
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+
+  input {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 9999px;
+    background-color: #396A85;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 900;
+
+    &:focus {
+      outline: none;
+    }
+  }
 `;
 
 export default LoginApp
