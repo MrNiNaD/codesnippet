@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import Textbox1 from './components/Textbox1';
 
 function LoginApp() {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [login, setLoginDetail] = useState({});
 
   const trimmer = useRef(null);
   const trimmerContainer = useRef(null);
@@ -18,6 +17,15 @@ function LoginApp() {
   const signInClicked = () => {
     trimmer.current.classList.remove("shift");
     trimmerContainer.current.classList.remove("switch");
+  }
+
+  const loginDetails = (event) => {
+    setLoginDetail(prevState => {
+      setLoginDetail({
+        ...prevState,
+        [event.name] : event.value
+      })
+    })
   }
 
   return (
@@ -41,14 +49,16 @@ function LoginApp() {
             <SignInForm>
               <SignInDiv>
                 <Heading>Sign In</Heading>
-                <form onChange={(event) => console.log(event.target.value)}>
+                <form onChange={(event) => loginDetails(event.target)}>
                   <Textbox1
                     type='text'
                     placeholder='Username'
+                    name='username'
                   />
                   <Textbox1
                     type='password'
                     placeholder='Password'
+                    name='password'
                   />
                   <Submit>
                     <input type='submit' />
@@ -56,13 +66,22 @@ function LoginApp() {
                 </form>
               </SignInDiv>
             </SignInForm>
-            <SignUpForm><div>Sign Up Form</div></SignUpForm>
+            <SignUpForm>
+              <div>
+                <Heading>Sign Up Form</Heading>
+              </div>
+            </SignUpForm>
           </TrimmerContainer>
         </Trimmer>
       </Auth>
     </>
   )
 }
+
+const Heading = styled.h1`
+  padding-bottom: 26px;
+  font-size: 37px;
+`;
 
 const Auth = styled.section`
   width: 100%;
@@ -134,18 +153,21 @@ const SignInForm = styled.div`
   justify-content: center;
 `;
 
-const SignUpForm = styled(SignInForm)``;
+const SignUpForm = styled(SignInForm)`
+  div {
+    width: 95%;
+    height: 95%;
+  }
+  ${Heading} {
+    text-align: center;
+  }
+`;
 
 const SignInDiv = styled.div`
   box-sizing: border-box;
   width: 50%;
   min-height: 50%;
   padding: 15px;
-`;
-
-const Heading = styled.h1`
-  padding-bottom: 26px;
-  font-size: 37px;
 `;
 
 const Submit = styled.div`

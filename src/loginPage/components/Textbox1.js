@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Textbox1({ type, placeholder, onChangeFunction }) {
+function Textbox1({ type, placeholder, name }) {
   return (
     <TextboxContainer>
-      <input type={type} placeholder={placeholder} onChange={onChangeFunction} />
+      <input
+        type={type} 
+        placeholder={placeholder}
+        name={name} 
+      />
     </TextboxContainer>
   )
 }
