@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import GlobalStyle from './asset/GlobalStyle';
 import styled from 'styled-components';
 import Textbox1 from './components/Textbox1';
+import { Link, BrowserRouter } from 'react-router-dom';
 
 function LoginApp() {
   const [login, setLoginDetail] = useState({});
@@ -29,54 +30,57 @@ function LoginApp() {
   }
 
   return (
-    <>
-      <GlobalStyle />
-      <Auth>
-        <Toggle>
-          <div>
-            <span>Click on Sign In Button to switch to Sign In Page</span>
-            <button onClick={signInClicked}>Sign In</button>
-          </div>
-        </Toggle>
-        <Toggle>
-          <div>
-            <span>Click on Sign Up Button to switch to Sign Up Page</span>
-            <button onClick={signUpClicked}>Sign Up</button>
-          </div>
-        </Toggle>
-        <Trimmer ref={trimmer}>
-          <TrimmerContainer ref={trimmerContainer}>
-            <SignInForm>
-              <SignInDiv>
-                <Heading>Sign In</Heading>
-                <form onChange={(event) => loginDetails(event.target)}>
-                  <Textbox1
-                    type='text'
-                    placeholder='Username'
-                    name='username'
-                  />
-                  <Textbox1
-                    type='password'
-                    placeholder='Password'
-                    name='password'
-                  />
-                  <Submit>
-                    <input type='submit' />
-                  </Submit>
-                </form>
-              </SignInDiv>
-            </SignInForm>
-            <SignUpForm>
-              <div>
-                <Heading>Sign Up Form</Heading>
-              </div>
-            </SignUpForm>
-          </TrimmerContainer>
-        </Trimmer>
-      </Auth>
-    </>
+      <BrowserRouter>
+        <GlobalStyle />
+        <Auth>
+          <Toggle>
+            <div>
+              <span>Click on Sign In Button to switch to Sign In Page</span>
+              <button onClick={signInClicked}>Sign In</button>
+            </div>
+          </Toggle>
+          <Toggle>
+            <div>
+              <span>Click on Sign Up Button to switch to Sign Up Page</span>
+              <button onClick={signUpClicked}>Sign Up</button>
+            </div>
+          </Toggle>
+          <Trimmer ref={trimmer}>
+            <TrimmerContainer ref={trimmerContainer}>
+              <SignInForm>
+                <SignInDiv>
+                  <Heading>Sign In</Heading>
+                  <form onChange={(event) => loginDetails(event.target)}>
+                    <Textbox1
+                      type='text'
+                      placeholder='Username'
+                      name='username'
+                    />
+                    <Textbox1
+                      type='password'
+                      placeholder='Password'
+                      name='password'
+                    />
+                    <ForgotPass>Forgot password?</ForgotPass>
+                    <Submit>
+                      <input type='submit' />
+                    </Submit>
+                  </form>
+                </SignInDiv>
+              </SignInForm>
+              <SignUpForm>
+                <div>
+                  <Heading>Sign Up Form</Heading>
+                </div>
+              </SignUpForm>
+            </TrimmerContainer>
+          </Trimmer>
+        </Auth>
+      </BrowserRouter>
   )
 }
+
+const pri = '#396A85';
 
 const Heading = styled.h1`
   padding-bottom: 26px;
@@ -95,7 +99,7 @@ const Toggle = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: #396A85;
+  background-color: ${pri};
   justify-content: center;
 
   div {
@@ -115,7 +119,7 @@ const Toggle = styled.div`
     border-radius: 9999px;
     margin-top: 5px;
     background-color: #fff;
-    color: #396A85;
+    color: ${pri};
     font-weight: 900;
     cursor: pointer;
 
@@ -179,7 +183,7 @@ const Submit = styled.div`
     padding: 10px 20px;
     border: none;
     border-radius: 9999px;
-    background-color: #396A85;
+    background-color: ${pri};
     color: #fff;
     font-size: 17px;
     font-weight: 900;
@@ -188,6 +192,14 @@ const Submit = styled.div`
       outline: none;
     }
   }
+`;
+
+const ForgotPass = styled(Link)`
+  padding-top: 10px;
+  display: block;
+  color: ${pri};
+  font-size: 12px;
+  text-decoration: none;
 `;
 
 export default LoginApp
