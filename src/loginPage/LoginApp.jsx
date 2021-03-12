@@ -41,16 +41,14 @@ function LoginApp() {
             <SignInForm>
               <SignInDiv>
                 <Heading>Sign In</Heading>
-                <form>
+                <form onChange={(event) => console.log(event.target.value)}>
                   <Textbox1
                     type='text'
                     placeholder='Username'
-                    onChangeFunction={(event) => setUsername(event.target.value)}
                   />
                   <Textbox1
                     type='password'
                     placeholder='Password'
-                    onChangeFunction={(event) => setPassword(event.target.value)}
                   />
                   <Submit>
                     <input type='submit' />
