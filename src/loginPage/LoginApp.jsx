@@ -8,16 +8,16 @@ function LoginApp() {
   const [password, setPassword] = useState();
 
   const trimmer = useRef(null);
-  const container = useRef(null);
+  const trimmerContainer = useRef(null);
 
   const signUpClicked = () => {
     trimmer.current.classList.add("shift");
-    container.current.classList.add("switch");
+    trimmerContainer.current.classList.add("switch");
   }
 
   const signInClicked = () => {
     trimmer.current.classList.remove("shift");
-    container.current.classList.remove("switch");
+    trimmerContainer.current.classList.remove("switch");
   }
 
   return (
@@ -37,7 +37,7 @@ function LoginApp() {
           </div>
         </Toggle>
         <Trimmer ref={trimmer}>
-          <Container ref={container}>
+          <TrimmerContainer ref={trimmerContainer}>
             <SignInForm>
               <SignInDiv>
                 <Heading>Sign In</Heading>
@@ -59,7 +59,7 @@ function LoginApp() {
               </SignInDiv>
             </SignInForm>
             <SignUpForm><div>Sign Up Form</div></SignUpForm>
-          </Container>
+          </TrimmerContainer>
         </Trimmer>
       </Auth>
     </>
@@ -119,7 +119,7 @@ const Trimmer = styled.div`
   transition: transform .5s ease;
 `;
 
-const Container = styled.div`
+const TrimmerContainer = styled.div`
   width: 100vw;
   height: 100%;
   display: flex;
