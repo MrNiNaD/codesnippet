@@ -3,6 +3,7 @@ import GlobalStyle from './asset/GlobalStyle';
 import styled from 'styled-components';
 import Textbox1 from './components/Textbox1';
 import { Link, BrowserRouter } from 'react-router-dom';
+import SignUpComp from './components/SignUpComp';
 
 function LoginApp() {
   const [login, setLoginDetail] = useState({});
@@ -71,6 +72,7 @@ function LoginApp() {
               <SignUpForm>
                 <div>
                   <Heading>Sign Up Form</Heading>
+                  <SignUpComp />
                 </div>
               </SignUpForm>
             </TrimmerContainer>
@@ -158,6 +160,8 @@ const SignInForm = styled.div`
 `;
 
 const SignUpForm = styled(SignInForm)`
+  overflow-y: auto;
+  
   div {
     width: 95%;
     height: 95%;
