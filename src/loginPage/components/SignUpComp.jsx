@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Steps, Step } from "react-step-builder";
+import CommonForm from "./CommonForm";
 
 //Role's Value
 const student = 'Student';
@@ -29,35 +31,38 @@ const SignUpForm = () => {
   }
 
   return (
-    <Form onSubmit={(event) => {
-      event.preventDefault();
-      //console.log(event.target.children);
-      }}>
-      <div>
-        <RoleButton
-          onClick={switchToStudent}
-          className={(role === student) ? selectedRole : ''}
-        >
-          Student
-        </RoleButton>
-        <RoleButton
-          onClick={switchToTutor}
-          className={(role === tutor) ? selectedRole : ''}
-        >
-          Tutor
-        </RoleButton>
-      </div>
-      {
-        (role === student)
-        &&
-        <div>student</div>
-      }
-      {
-        (role === tutor)
-        &&
-        <div>tutor</div>
-      }
-    </Form>
+    // <Form onSubmit={(event) => {
+    //   event.preventDefault();
+    //   //console.log(event.target.children);
+    //   }}>
+    //   <div>
+    //     <RoleButton
+    //       onClick={switchToStudent}
+    //       className={(role === student) ? selectedRole : ''}
+    //     >
+    //       Student
+    //     </RoleButton>
+    //     <RoleButton
+    //       onClick={switchToTutor}
+    //       className={(role === tutor) ? selectedRole : ''}
+    //     >
+    //       Tutor
+    //     </RoleButton>
+    //   </div>
+    //   {
+    //     (role === student)
+    //     &&
+    //     <div>student</div>
+    //   }
+    //   {
+    //     (role === tutor)
+    //     &&
+    //     <div>tutor</div>
+    //   }
+    // </Form>
+    <Steps>
+      <Step component={CommonForm} />
+    </Steps>
   )
 }
 
