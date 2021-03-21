@@ -30,6 +30,9 @@ function LoginApp() {
     })
   }
 
+  //To set font-size of sign-in for text field
+  const signInFont = '20px';
+
   return (
       <BrowserRouter>
         <GlobalStyle />
@@ -56,11 +59,13 @@ function LoginApp() {
                       type='text'
                       placeholder='Username'
                       name='username'
+                      fontSize={signInFont}
                     />
                     <Textbox1
                       type='password'
                       placeholder='Password'
                       name='password'
+                      fontSize={signInFont}
                     />
                     <ForgotPass>Forgot password?</ForgotPass>
                     <Submit>
