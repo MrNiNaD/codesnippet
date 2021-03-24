@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Textbox1({ type, placeholder, name, fontSize }) {
+function Textbox1({ type, placeholder, name, fontSize, value }) {
   return (
     <TextboxContainer fontSize={fontSize}>
       <input
-        type={type} 
+        type={type}
         placeholder={placeholder}
-        name={name} 
+        name={name}
+        value={value}
       />
     </TextboxContainer>
   )
@@ -15,7 +16,7 @@ function Textbox1({ type, placeholder, name, fontSize }) {
 
 const TextboxContainer = styled.div`
   border-bottom: 2px solid #000;
-
+  
   input {
     width: 100%;
     padding: 10px;

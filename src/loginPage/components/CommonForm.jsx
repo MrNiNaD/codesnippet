@@ -1,14 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react';
+import Textbox from './Textbox1';
 
 const CommonForm = (props) => {
-  useEffect(() => {
-    props.setState('test', 'test1');
-  }, [])
+
+  const [arr] = useState([1,2,3,4,5]);
+  // const signInFont='20px';
   return (
-    <div>
-      {props.getState("test", "")}
-      {console.log(props)}
-    </div>
+    <>
+      {
+        arr.map((val, index) => {
+          return (
+            <Textbox
+              type='text'
+              placeholder={`name${val}`}
+              name={`name${val}`}
+              fontSize={'13px'}
+            />
+          )
+        }
+        )
+      }
+    </>
   )
 }
 

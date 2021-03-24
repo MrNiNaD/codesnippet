@@ -167,7 +167,7 @@ const SignInForm = styled.div`
 const SignUpForm = styled(SignInForm)`
   overflow-y: auto;
   
-  div {
+  & > div {
     width: 95%;
     height: 95%;
   }
