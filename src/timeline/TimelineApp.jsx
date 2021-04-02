@@ -2,8 +2,15 @@ import React from 'react';
 import Image from './images/logo.png';
 import styled from 'styled-components';
 import GlobalStyle, { Wrapper } from './asset/GlobalStyle';
+import Cards from './components/Cards';
 
 const TimelineApp = () => {
+  const article = {
+    type: 'Article'
+  }
+  const video = {
+    type: 'Video'
+  }
   return (
     <>
       <GlobalStyle/>
@@ -21,7 +28,17 @@ const TimelineApp = () => {
       </Header>
       <Main>
         <Wrapper>
-            
+            {/* http://placehold.it/1000x500/270458 */}
+            <ul>
+              <Cards data={article} />
+              <Cards data={video} />
+              <Cards data={article} />
+              <Cards data={video} />
+              <Cards data={article} />
+              <Cards data={video} />
+              <Cards data={article} />
+              <Cards data={video} />
+            </ul>
         </Wrapper>
       </Main>
     </>
@@ -54,22 +71,38 @@ const Header = styled.header`
   nav {
     position: absolute;
     top: 50%;
-    right: 0;
-    transform: translateY(-50%);
+    right: 10px;
+    transform: translate(-50%, -50%);
 
     a {
       color: #292D65;
       text-decoration: none;
+
+      :hover {
+        text-decoration: underline;
+      }
     }
   }
 `;
 
 const Main = styled.main`
-  height: 100px;
   background-color: #F5F5F5;
 
   ${Wrapper} {
+    padding-top: 30px;
     background-color: #fff;
+  }
+
+  ul {
+    margin: 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: flex-start;
+
+    li:not(:nth-child(3n + 1)) {
+      margin-left: 10px;
+    }
   }
 `;
 

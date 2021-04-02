@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
 export const Wrapper = styled.div`
   max-width: 1350px;
-  width: 62%;
+  width: 70%;
   margin: 0 auto;
 `;
 
