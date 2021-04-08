@@ -1,16 +1,49 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Image from './images/logo.png';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import GlobalStyle, { Wrapper } from './asset/GlobalStyle';
 import Cards from './components/Cards';
 
 const TimelineApp = () => {
-  const article = {
-    type: 'Article'
-  }
-  const video = {
-    type: 'Video'
-  }
+  const arr = [
+    {type: 'Article'},
+    {type: 'Video'},
+    {type: 'Article'},
+    {type: 'Video'},
+    {type: 'Article'},
+    {type: 'Video'},
+    {type: 'Article'},
+    {type: 'Video'},
+    {type: 'Article'},
+    {type: 'Video'},
+    {type: 'Article'},
+    {type: 'Video'},
+    {type: 'Article'},
+    {type: 'Video'},
+  ]
+
+  const [payload, setPayload] = useState(arr)
+  const [loader, setLoader] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+
+      if(scrollTop + clientHeight >= scrollHeight) {
+        setLoader(true);
+        setTimeout(() => {
+          setPayload((prevState) => {
+            return [
+              ...prevState,
+              ...arr
+            ]
+          });
+          setLoader(false);
+        }, 2000)
+      }
+    })
+  }, [])
+
   return (
     <>
       <GlobalStyle/>
@@ -28,17 +61,10 @@ const TimelineApp = () => {
       </Header>
       <Main>
         <Wrapper>
-            {/* http://placehold.it/1000x500/270458 */}
             <ul>
-              <Cards data={article} />
-              <Cards data={video} />
-              <Cards data={article} />
-              <Cards data={video} />
-              <Cards data={article} />
-              <Cards data={video} />
-              <Cards data={article} />
-              <Cards data={video} />
+              {payload.map((data, index) => <Cards key={index} data={data} />)}
             </ul>
+            {loader && <Loader><div/></Loader>}
         </Wrapper>
       </Main>
     </>
@@ -104,6 +130,27 @@ const Main = styled.main`
       margin-left: 10px;
     }
   }
+`;
+
+const Spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`
+
+const Loader = styled.div`
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+
+  > div {
+    border: 9px solid #80808077;
+    border-radius: 50%;
+    border-top: 8px solid #2E295A;
+    width: 30px;
+    height: 30px;
+    animation: ${Spin} 2s linear infinite;
+  }
+  
 `;
 
 export default TimelineApp
